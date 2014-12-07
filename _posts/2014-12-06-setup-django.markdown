@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Install Django PIP and Virtualenv"
+title:  "Setup Django Environments"
 date:   2014-12-06 20:01:50
 categories: jekyll update
 ---
@@ -22,6 +22,10 @@ In order to actually build projects, we need to make sure our computer is setup.
 4. Install Virtualenv (A tool to create isolated Python environments):
 
 		$ sudo pip install virtualenv
+
+5. Install MySQL Python:
+
+		$ sudo pip install mysql-python
 
 5. Activate virtual environments:
 
