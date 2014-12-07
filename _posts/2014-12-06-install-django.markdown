@@ -10,35 +10,42 @@ In order to actually build projects, we need to make sure our computer is setup.
 1. Check Python version:
 
 		$ python --version
-2. Install PIP (a tool for installing and managing Python packages):
+
+2. Install PIP (A tool for installing and managing Python packages):
 
 		$ sudo easy_install pip
-3. Install Virtualenv (a tool to create isolated Python environments):
+
+3. Install Setuptools (Easily download, build, install, upgrade, and uninstall Python packages):
+
+		$ sudo easy_install setuptools
+
+4. Install Virtualenv (A tool to create isolated Python environments):
 
 		$ sudo pip install virtualenv
-4. Activate virtual environments:
+
+5. Activate virtual environments:
 
 		$ virtualenv somename
 		$ cd somename/
 		$ source bin/activate
 		(somename)$ pip freeze
 
-5. Install Django in virtual machine:
+6. Install Django in virtual machine:
 
 		(somename)$ pip install django==1.4.5
 		(somename)$ pip install django --upgrade
 
-6. Install Django in your local machine:
+7. Install Django in your local machine:
 
 		$ sudo easy_install django
 		// or
 		$ sudo pip install django
 
-7. Start Django project:
+8. Start Django project:
 
 		$ django-admin.py startproject my_project
 		$ cd my_project/
 		$ python manage.py runserver
 
 #### **Resource:**
-* [http://codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/](http://codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/)
+* [codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/](http://codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/)
