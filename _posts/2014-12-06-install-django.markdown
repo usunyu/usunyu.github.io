@@ -35,13 +35,17 @@ In order to actually build projects, we need to make sure our computer is setup.
 		(somename)$ pip install django==1.4.5
 		(somename)$ pip install django --upgrade
 
-7. Install Django in your local machine:
+7. Deactivate virtual environments:
+
+		(somename)$ deactivate
+
+8. Install Django in your local machine:
 
 		$ sudo easy_install django
 		// or
 		$ sudo pip install django
 
-8. Start Django project:
+9. Start Django project:
 
 		$ django-admin.py startproject my_project
 		$ cd my_project/
