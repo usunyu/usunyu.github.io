@@ -19,5 +19,5 @@ An amazing iOS, dual-gravity running game, based on Cocos2D and Box2D framework.
 * Tao Hu, game designer & artist, responsible for world design, level design, map design and artwork for menu, background, all in game elements
 * Hui Li, responsible for character animation, begin animation, trailer
 
-[Demo Link](http://www.youtube.com/watch?v=trFJsnU8M6Q)
-
+##### Demo:
+[![Video](/images/jokerjumper.png)](http://www.youtube.com/watch?v=trFJsnU8M6Q)
