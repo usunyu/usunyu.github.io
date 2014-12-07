@@ -20,4 +20,4 @@ An amazing iOS, dual-gravity running game, based on Cocos2D and Box2D framework.
 * Hui Li, responsible for character animation, begin animation, trailer
 
 ##### Demo:
-[![Video](/images/jokerjumper.png)](http://www.youtube.com/watch?v=trFJsnU8M6Q)
+[![Video](/images/jokerjumper.jpg)](http://www.youtube.com/watch?v=trFJsnU8M6Q)
