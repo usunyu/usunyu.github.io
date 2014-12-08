@@ -1,8 +1,6 @@
 ---
 layout: post
 title:  "Start a Simple Web Server from Any Directory on Your Mac"
-date:   2014-12-07 21:15:07
-categories: jekyll update
 ---
 {% highlight bash %}
 $ python -m SimpleHTTPServer 8000

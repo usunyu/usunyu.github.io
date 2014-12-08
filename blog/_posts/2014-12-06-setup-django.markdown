@@ -1,8 +1,6 @@
 ---
 layout: post
 title:  "Setup Django Environments"
-date:   2014-12-06 20:01:50
-categories: jekyll update
 ---
 In order to actually build projects, we need to make sure our computer is setup. In this project, we'll setup your environment. Made for Mac OS X Mavericks which is the latest, free operating system from Apple.
 

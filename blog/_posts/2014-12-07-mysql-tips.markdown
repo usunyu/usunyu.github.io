@@ -1,8 +1,6 @@
 ---
 layout: post
 title:  "MySQL Command Tips"
-date:   2014-12-07 00:17:35
-categories: jekyll update
 ---
 #### Invoke MySQL:
 {% highlight bash %}
