@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yu Sun</title>
+    <description>Life is like a box of chocolates, You never know what you&#39;re gonna get.
+</description>
+    <link>http://usunyu.github.io//blog/</link>
+    <atom:link href="http://usunyu.github.io//blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 07 Dec 2014 20:08:42 -0800</pubDate>
+    <lastBuildDate>Sun, 07 Dec 2014 20:08:42 -0800</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>MySQL Command Tips</title>
+        <description>&lt;h4 id=&quot;invoke-mysql&quot;&gt;Invoke MySQL:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql -u root -p
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql --user&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;your-user-name --password&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;your-password&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-the-database&quot;&gt;Create the Database:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mysql&amp;gt; CREATE DATABASE my_db&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+mysql&amp;gt; SHOW databases&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+mysql&amp;gt; USE my_db&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-a-table&quot;&gt;Create a Table:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mysql&amp;gt; CREATE TABLE user &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, username CHAR&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;25&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, passward CHAR&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-an-entry-in-the-table&quot;&gt;Create an entry in the table:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mysql&amp;gt; INSERT INTO user &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;id, username, passward&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;NULL, &lt;span class=&quot;s1&quot;&gt;&amp;#39;name&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;secrect&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-more-entries&quot;&gt;Create more entries:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mysql&amp;gt; INSERT INTO user &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;id, username, passward&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;NULL, &lt;span class=&quot;s1&quot;&gt;&amp;#39;name2&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;secrect2&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;NULL, &lt;span class=&quot;s1&quot;&gt;&amp;#39;name3&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;secrect3&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;NULL, &lt;span class=&quot;s1&quot;&gt;&amp;#39;name4&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;secrect4&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;resource&quot;&gt;Resource:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/&quot;&gt;www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.wikihow.com/Create-a-Database-in-MySQL&quot;&gt;www.wikihow.com/Create-a-Database-in-MySQL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 06 Dec 2014 16:17:35 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/06/mysql-tips.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/06/mysql-tips.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Setup Django Environments</title>
+        <description>&lt;p&gt;In order to actually build projects, we need to make sure our computer is setup. In this project, we’ll setup your environment. Made for Mac OS X Mavericks which is the latest, free operating system from Apple.&lt;/p&gt;
+
+&lt;h4 id=&quot;step&quot;&gt;&lt;strong&gt;Step:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Check Python version:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ python --version
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install PIP (A tool for installing and managing Python packages):&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo easy_install pip
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Setuptools (Easily download, build, install, upgrade, and uninstall Python packages):&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo easy_install setuptools
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Virtualenv (A tool to create isolated Python environments):&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo pip install virtualenv
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install MySQL Python:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo pip install mysql-python
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Activate virtual environments:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ virtualenv somename
+ $ cd somename/
+ $ source bin/activate
+ (somename)$ pip freeze
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Django in virtual machine:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; (somename)$ pip install django==1.4.5
+ (somename)$ pip install django --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deactivate virtual environments:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; (somename)$ deactivate
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Django in your local machine:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo easy_install django
+ // or
+ $ sudo pip install django
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start Django project:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ django-admin.py startproject my_project
+ $ cd my_project/
+ $ python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;resource&quot;&gt;&lt;strong&gt;Resource:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/&quot;&gt;codingforentrepreneurs.com/projects/get-with-mac/install-django-pip-and-virtualenv/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 06 Dec 2014 12:01:50 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/06/setup-django.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/06/setup-django.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>ClearPath OpenStreetMap</title>
+        <description>&lt;p&gt;This is map near our campus I fetched from OSM Project and converted it to our project’s format. 
+And I cleaned all the shape, building, barrier,etc which cannot be used for routing.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/clearpath_osm.jpg&quot; alt=&quot;OSM&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;bidirectional-hierarchy-searching&quot;&gt;&lt;strong&gt;Bidirectional Hierarchy Searching:&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;From source and destination to perform forward searching and reverse searching simultaneously.&lt;/li&gt;
+  &lt;li&gt;Forward searching is based on time dependent A* searching, but when it enter the highway, it will keep on highway.&lt;/li&gt;
+  &lt;li&gt;Reverse searching is based on lower bound A* searching, it will also keep on highway when it hit the highway entrance.&lt;/li&gt;
+  &lt;li&gt;When forward searching and reverse searching encounter on the highway, we will find a path.&lt;/li&gt;
+  &lt;li&gt;The mechanism of hierarchy(keep on highway) will reduce the searching space and lead to less response time.&lt;/li&gt;
+  &lt;li&gt;By the mechanism of bidirectional search, we do not worry about finding highway entrance and highway exit.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;a-searching-vs-bh-searching&quot;&gt;A* searching vs BH searching&lt;/h4&gt;
+&lt;p&gt;Chose two long distance nodes in Los Angeles and perform A* routing, Bidirectional Hierarchy routing and compare.&lt;/p&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Algorithm&lt;/td&gt;&lt;td&gt;Response Time&lt;/td&gt;&lt;td&gt;Search Space&lt;/td&gt;&lt;td&gt;Travel Cost&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;A*&lt;/td&gt;&lt;td&gt;1485 ms&lt;/td&gt;&lt;td&gt;291777 nodes&lt;/td&gt;&lt;td&gt;150 min&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;BH&lt;/td&gt;&lt;td&gt;225 ms&lt;/td&gt;&lt;td&gt;15204 nodes&lt;/td&gt;&lt;td&gt;150 min&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/clearpath_astar.jpg&quot; alt=&quot;A*&quot; /&gt;
+&lt;img src=&quot;/images/clearpath_bh.jpg&quot; alt=&quot;BH&quot; /&gt;
+&lt;img src=&quot;/images/clearpath_not.jpg&quot; alt=&quot;Not always optimal&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;reference&quot;&gt;Reference&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;[1] Sebastian Knopp, Peter Sanders, Dominik Schultes and Frank SchulzFast. Computation of Distance Tables using Highway Hierarchies, 2006.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;manual&quot;&gt;&lt;strong&gt;Manual:&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;put-your-maposm-in-the-file-folder-of-the-project&quot;&gt;1) put your “map.osm” in the “file” folder of the project&lt;/h4&gt;
+
+&lt;h4 id=&quot;osm2wktosm2wkt&quot;&gt;2) osm2wkt/Osm2wkt&lt;/h4&gt;
+&lt;p&gt;this step will get rid of the none-routable path, and please press “N” when it asked for fixCompleteness.
+* read the data from OSM file
+* get rid of unroutable data
+* generate xxx.wkts file&lt;/p&gt;
+
+&lt;h4 id=&quot;controllerosminputfilegeneration&quot;&gt;3) controller/OSMInputFileGeneration&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;read the data from OSM file&lt;/li&gt;
+  &lt;li&gt;generate xxx_node.csv and xxx_way.csv from data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;controllerosmoutputfilegeneration&quot;&gt;4) controller/OSMOutputFileGeneration&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;read the data from xxx_node.csv and xxx_way.csv&lt;/li&gt;
+  &lt;li&gt;according xxx.wkts, overwrite xxx_node.csv and xxx_way.csv&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;controllerosmdividewaytoedge&quot;&gt;5) controller/OSMDivideWayToEdge&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;divide the long way to seperate edges based on intersect&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;controllerosmgeneratekmloptional&quot;&gt;6) controller/OSMGenerateKML(Optional)&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;generate edge kml&lt;/li&gt;
+  &lt;li&gt;generate node kml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;controllerosmgenerateadjlist&quot;&gt;7) controller/OSMGenerateAdjList&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;generate xxx_adjlist.csv file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All the preprocessing steps (1~7) can be done in the controller/OSMGenerateAll.&lt;/p&gt;
+
+&lt;h4 id=&quot;controllerosmrouting&quot;&gt;8) controller/OSMRouting&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;using A* algorithm for path routing&lt;/li&gt;
+  &lt;li&gt;using A* algorithm with fibonacci heap for path routing&lt;/li&gt;
+  &lt;li&gt;using bidirectional hierarchy routing algorithm for path routing&lt;/li&gt;
+  &lt;li&gt;show turn by turn information&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;testcomparetdsptdsphtimecost&quot;&gt;9) test/CompareTdspTdspHTimeCost&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;compare the response time and cost time between A* algorithm and hierarchy routing algorithm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;testanalyzetraveltimematrix&quot;&gt;10) test/AnalyzeTravelTimeMatrix&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;calculate the travel time based on matrix data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;github&quot;&gt;&lt;strong&gt;GitHub:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/usunyu/ClearPath/tree/master/OpenStreetMap&quot;&gt;Repositories&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 06 Dec 2014 10:12:23 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/06/clearpath-osm.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/06/clearpath-osm.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>ClearPath Navteq</title>
+        <description>&lt;p&gt;This is the pattern I created from the data of sensors I matched, I filled the missing data from near related sensor or history data. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/clearpath_pattern.jpg&quot; alt=&quot;Pattern&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Blue:		speed &amp;lt; 10&lt;/li&gt;
+  &lt;li&gt;Red:		speed &amp;gt;= 10 &amp;amp;&amp;amp; speed &amp;lt; 25&lt;/li&gt;
+  &lt;li&gt;Yellow:	speed &amp;gt;= 25 &amp;amp;&amp;amp; speed &amp;lt; 50&lt;/li&gt;
+  &lt;li&gt;Green:	speed &amp;gt;= 50&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;manual&quot;&gt;&lt;strong&gt;Manual:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;CA GNDEMO Process (In PatternGeneration Project):
+    &lt;ul&gt;
+      &lt;li&gt;input/CAInputFileGeneration&lt;/li&gt;
+      &lt;li&gt;(Optional) output/CAOutputKMLGeneration to generate kml&lt;/li&gt;
+      &lt;li&gt;pattern/CAAdjListPattern&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Clean Data Process (In PatternGeneration Project):
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;input/InputFileGeneration&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;   writeAverageCube
+   readAverageCube(i, 0);
+   changeInterval();
+   writeAverage15Cube(i, 0);
+   renameAverageFile(i, 0);
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;process/DataClean&lt;/li&gt;
+      &lt;li&gt;output/OutputDatabaseGeneration&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AdjList Create Process (In ArterialPatternGeneration_shireesh Project):
+    &lt;ul&gt;
+      &lt;li&gt;GetAverageSpeedForArterials1to5New&lt;/li&gt;
+      &lt;li&gt;GetAverageSpeedForHighways&lt;/li&gt;
+      &lt;li&gt;CreateListForArterials1to5New&lt;/li&gt;
+      &lt;li&gt;CreateListForHighways1to5New&lt;/li&gt;
+      &lt;li&gt;CreateAdjList1to5New&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;github&quot;&gt;&lt;strong&gt;GitHub:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/usunyu/ClearPath/tree/master/Nevteq&quot;&gt;Repositories&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 06 Dec 2014 09:57:05 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/06/clearpath-nevteq.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/06/clearpath-nevteq.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Joker Jumper iOS Game</title>
+        <description>&lt;p&gt;An amazing iOS, dual-gravity running game, based on Cocos2D and Box2D framework. From GamePipe Lab at University of Southern California for Advanced Mobile Devices and Game Consoles.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=trFJsnU8M6Q&quot;&gt;&lt;img src=&quot;/images/jokerjumper.jpg&quot; alt=&quot;Video&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;developed-by&quot;&gt;&lt;strong&gt;Developed by:&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;programmers&quot;&gt;Programmers:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Yu Sun, responsible for level architecture, tile map, user interface, gesture recognition, device deployment&lt;/li&gt;
+  &lt;li&gt;Heguang Liu, responsible for physical world, in game element, enemy AI, collision detection, particle effects, HUD control&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;artists&quot;&gt;Artists:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Tao Hu, game designer &amp;amp; artist, responsible for world design, level design, map design and artwork for menu, background, all in game elements&lt;/li&gt;
+  &lt;li&gt;Hui Li, responsible for character animation, begin animation, trailer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;github&quot;&gt;&lt;strong&gt;GitHub:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/usunyu/JokerJumper&quot;&gt;Repositories&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 02 Dec 2014 16:23:12 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/02/joker-jumper.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/02/joker-jumper.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 01 Dec 2014 16:19:59 -0800</pubDate>
+        <link>http://usunyu.github.io//blog/jekyll/update/2014/12/01/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://usunyu.github.io//blog/jekyll/update/2014/12/01/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>
