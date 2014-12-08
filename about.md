@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![Me](/public/images/me.jpg)
+![Me](/public/me.jpg)
 
 I am Yu Sun, a Software Engineer from Facebook. I consider myself a quick learner and have considerable passion to build great apps.
 
