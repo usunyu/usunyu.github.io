@@ -245,7 +245,18 @@ class QuestionAdmin(admin.ModelAdmin):
 {% highlight python %}
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 {% endhighlight %}
-
+{% highlight bash %}
+$ python -c "
+import sys
+sys.path = sys.path[1:]
+import django
+print(django.__path__)"
+$ cp /Library/Python/2.7/site-packages/django/contrib/admin/templates/admin/base_site.html ~/mysite/templates/admin
+{% endhighlight %}
+Replace `{{ site_header|default:_('Django administration') }}` in `base_site.html`
+{% highlight html %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+{% endhighlight %}
 
 #### Resource:
 * [Writing your first Django app, part 1](https://docs.djangoproject.com/en/dev/intro/tutorial01/)
