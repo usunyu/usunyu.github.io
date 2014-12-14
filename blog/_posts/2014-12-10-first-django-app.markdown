@@ -241,7 +241,7 @@ class QuestionAdmin(admin.ModelAdmin):
 {% endhighlight %}
 
 ### Customize the admin look and feel:
-`mysite/settings.py`
+`mysite/settings.py`:
 {% highlight python %}
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 {% endhighlight %}
@@ -253,9 +253,9 @@ import django
 print(django.__path__)"
 $ cp /Library/Python/2.7/site-packages/django/contrib/admin/templates/admin/base_site.html ~/mysite/templates/admin
 {% endhighlight %}
-Replace `{{ site_header|default:_('Django administration') }}` in `base_site.html`
+Replace `{ { site_header|default:_('Django administration') } }` in `base_site.html`:
 {% highlight html %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+<h1 id="site-name"><a href="{ % url 'admin:index' % }">Polls Administration</a></h1>
 {% endhighlight %}
 
 #### Resource:
