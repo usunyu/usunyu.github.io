@@ -81,22 +81,17 @@ $ python manage.py migrate
 {% highlight bash %}
 $ python manage.py shell
 
->>> from polls.models import Question, Choice
->>> Question.objects.all()
-[]
->>> from django.utils import timezone
->>> q = Question(question_text="What's new?", pub_date=timezone.now())
->>> q.save()
->>> q.id
-1
->>> q.question_text
-"What's new?"
->>> q.pub_date
-datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
->>> q.question_text = "What's up?"
->>> q.save()
->>> Question.objects.all()
-[<Question: Question object>]
+> from polls.models import Question, Choice
+> Question.objects.all()
+> from django.utils import timezone
+> q = Question(question_text="What's new?", pub_date=timezone.now())
+> q.save()
+> q.id
+> q.question_text
+> q.pub_date
+> q.question_text = "What's up?"
+> q.save()
+> Question.objects.all()
 {% endhighlight %}
 
 Edit `polls/models.py`, add functions:
@@ -121,44 +116,28 @@ class Choice(models.Model):
 {% endhighlight %}
 Run `python manage.py shell` again:
 {% highlight bash %}
->>> from polls.models import Question, Choice
->>> Question.objects.all()
-[<Question: What's up?>]
->>> Question.objects.filter(id=1)
-[<Question: What's up?>]
->>> Question.objects.filter(question_text__startswith='What')
-[<Question: What's up?>]
->>> from django.utils import timezone
->>> current_year = timezone.now().year
->>> Question.objects.get(pub_date__year=current_year)
-<Question: What's up?>
->>> Question.objects.get(id=2)
-Traceback (most recent call last):
-    ...
-DoesNotExist: Question matching query does not exist.
->>> Question.objects.get(pk=1)
-<Question: What's up?>
->>> q = Question.objects.get(pk=1)
->>> q.was_published_recently()
-True
->>> q = Question.objects.get(pk=1)
->>> q.choice_set.all()
-[]
->>> q.choice_set.create(choice_text='Not much', votes=0)
-<Choice: Not much>
->>> q.choice_set.create(choice_text='The sky', votes=0)
-<Choice: The sky>
->>> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
->>> c.question
-<Question: What's up?>
->>> q.choice_set.all()
-[<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
->>> q.choice_set.count()
-3
->>> Choice.objects.filter(question__pub_date__year=current_year)
-[<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
->>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
->>> c.delete()
+> from polls.models import Question, Choice
+> Question.objects.all()
+> Question.objects.filter(id=1)
+> Question.objects.filter(question_text__startswith='What')
+> from django.utils import timezone
+> current_year = timezone.now().year
+> Question.objects.get(pub_date__year=current_year)
+> Question.objects.get(id=2)
+> Question.objects.get(pk=1)
+> q = Question.objects.get(pk=1)
+> q.was_published_recently()
+> q = Question.objects.get(pk=1)
+> q.choice_set.all()
+> q.choice_set.create(choice_text='Not much', votes=0)
+> q.choice_set.create(choice_text='The sky', votes=0)
+> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
+> c.question
+> q.choice_set.all()
+> q.choice_set.count()
+> Choice.objects.filter(question__pub_date__year=current_year)
+> c = q.choice_set.filter(choice_text__startswith='Just hacking')
+> c.delete()
 {% endhighlight %}
 
 #### Creating an admin user:
@@ -258,6 +237,163 @@ Replace `{ { site_header|default:_('Django administration') } }` in `base_site.h
 <h1 id="site-name"><a href="{ % url 'admin:index' % }">Polls Administration</a></h1>
 {% endhighlight %}
 
+### Write your first view:
+Open the file `polls/views.py`:
+{% highlight python %}
+from django.http import HttpResponse
+
+def index(request):
+	return HttpResponse("Hello, world. You're at the polls index.")
+{% endhighlight %}
+Create a file called `urls.py` in polls app, `polls/urls.py`:
+{% highlight python %}
+from django.conf.urls import url
+from polls import views
+
+urlpatterns = [
+	url(r'^$', views.index, name='index'),
+]
+{% endhighlight %}
+
+### Writing more views:
+`polls/views.py`:
+{% highlight python %}
+def detail(request, question_id):
+	return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+	response = "You're looking at the results of question %s."
+	return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+	return HttpResponse("You're voting on question %s." % question_id)
+{% endhighlight %}
+`polls.urls`:
+{% highlight python %}
+from django.conf.urls import url
+from polls import views
+
+urlpatterns = [
+	# ex: /polls/
+	url(r'^$', views.index, name='index'),
+	# ex: /polls/5/
+	url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
+	# ex: /polls/5/results/
+	url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
+	# ex: /polls/5/vote/
+	url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+]
+{% endhighlight %}
+
+### Write views that actually do something:
+`polls/views.py`:
+{% highlight python %}
+from django.http import HttpResponse
+from polls.models import Question
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ', '.join([p.question_text for p in latest_question_list])
+    return HttpResponse(output)
+{% endhighlight %}
+Create a file called `templates/polls/index.html` in your `polls` directory, `polls/templates/polls/index.html`:
+{% highlight html %}
+{ % if latest_question_list % }
+	<ul>
+	{ % for question in latest_question_list % }
+		<li><a href="/polls/{ { question.id } }/">{ { question.question_text } }</a></li>
+	{ % endfor % }
+	</ul>
+{ % else % }
+	<p>No polls are available.</p>
+{ % endif % }
+{% endhighlight %}
+`polls/views.py`:
+{% highlight python %}
+from django.http import HttpResponse
+from django.template import RequestContext, loader
+from polls.models import Question
+
+def index(request):
+	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+
+	template = loader.get_template('polls/index.html')
+	context = RequestContext(request, {
+	    'latest_question_list': latest_question_list,
+	})
+	return HttpResponse(template.render(context))
+	// or
+	context = {'latest_question_list': latest_question_list}
+	return render(request, 'polls/index.html', context)
+{% endhighlight %}
+
+### Raising a 404 error:
+`polls/views.py`:
+{% highlight python %}
+from django.http import Http404
+from django.shortcuts import render
+from polls.models import Question
+# ...
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404
+    return render(request, 'polls/detail.html', {'question': question})
+{% endhighlight %}
+`polls/templates/polls/detail.html`:
+{% highlight html %}
+{ { question } }
+{% endhighlight %}
+A shortcut: `get_object_or_404()`, `polls/views.py`:
+{% highlight python %}
+from django.shortcuts import get_object_or_404, render
+from polls.models import Question
+# ...
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+{% endhighlight %}
+
+### Use the template system:
+`polls/templates/polls/detail.html`:
+{% highlight html %}
+<h1>{ { question.question_text } }</h1>
+<ul>
+{ % for choice in question.choice_set.all % }
+	<li>{ { choice.choice_text } }</li>
+{ % endfor % }
+</ul>
+{% endhighlight %}
+
+### Removing hardcoded URLs in templates:
+`polls/templates/polls/index.html`:
+{% highlight html %}
+<li><a href="/polls/{ { question.id } }/">{ { question.question_text } }</a></li>
+<!-- to -->
+<li><a href="{ % url 'detail' question.id % }">{ { question.question_text } }</a></li>
+{% endhighlight %}
+
+### Namespacing URL names:
+`mysite/urls.py`:
+{% highlight python %}
+from django.conf.urls import include, url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^polls/', include('polls.urls', namespace="polls")),
+    url(r'^admin/', include(admin.site.urls)),
+]
+{% endhighlight %}
+`polls/templates/polls/index.html`:
+{% highlight html %}
+<li><a href="{ % url 'detail' question.id % }">{ { question.question_text } }</a></li>
+<!-- to -->
+<li><a href="{ % url 'polls:detail' question.id % }">{ { question.question_text } }</a></li>
+{% endhighlight %}
+
+
 #### Resource:
 * [Writing your first Django app, part 1](https://docs.djangoproject.com/en/dev/intro/tutorial01/)
 * [Writing your first Django app, part 2](https://docs.djangoproject.com/en/dev/intro/tutorial02/)
+* [Writing your first Django app, part 3](https://docs.djangoproject.com/en/dev/intro/tutorial03/)
