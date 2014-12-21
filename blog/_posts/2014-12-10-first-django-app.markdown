@@ -2,6 +2,8 @@
 layout: post
 title: Writing your first Django app
 ---
+### 1. Throughout this tutorial, we’ll walk you through the creation of a basic poll application.
+---
 #### Check Django is installed and which version ([Setup Django](/blog/2014/12/06/setup-django/)):
 {% highlight bash %}
 $ python -c "import django; print(django.get_version())"
@@ -140,6 +142,8 @@ Run `python manage.py shell` again:
 > c.delete()
 {% endhighlight %}
 
+### 2. We’re continuing the Web-poll application and will focus on Django’s automatically-generated admin site.
+---
 #### Creating an admin user:
 {% highlight bash %}
 $ python manage.py createsuperuser
@@ -156,7 +160,7 @@ $ python manage.py runserver
 {% endhighlight %}
 Open [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-### Make the poll app modifiable in the admin:
+#### Make the poll app modifiable in the admin:
 `polls/admin.py`:
 {% highlight python %}
 from django.contrib import admin
@@ -165,7 +169,7 @@ from polls.models import Question
 admin.site.register(Question)
 {% endhighlight %}
 
-### Customize the admin form:
+#### Customize the admin form:
 `polls/admin.py`:
 {% highlight python %}
 from django.contrib import admin
@@ -184,7 +188,7 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 {% endhighlight %}
 
-### Adding related objects:
+#### Adding related objects:
 `polls/admin.py`:
 {% highlight python %}
 from django.contrib import admin
@@ -209,7 +213,7 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 {% endhighlight %}
 
-### Customize the admin change list:
+#### Customize the admin change list:
 `polls/admin.py`:
 {% highlight python %}
 class QuestionAdmin(admin.ModelAdmin):
@@ -219,7 +223,7 @@ class QuestionAdmin(admin.ModelAdmin):
 	search_fields = ['question_text']
 {% endhighlight %}
 
-### Customize the admin look and feel:
+#### Customize the admin look and feel:
 `mysite/settings.py`:
 {% highlight python %}
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
@@ -237,7 +241,8 @@ Replace `{ { site_header|default:_('Django administration') } }` in `base_site.h
 <h1 id="site-name"><a href="{ % url 'admin:index' % }">Polls Administration</a></h1>
 {% endhighlight %}
 
-### Write your first view:
+### 3. We’re continuing the Web-poll application and will focus on creating the public interface – "views."
+#### Write your first view:
 Open the file `polls/views.py`:
 {% highlight python %}
 from django.http import HttpResponse
@@ -255,7 +260,7 @@ urlpatterns = [
 ]
 {% endhighlight %}
 
-### Writing more views:
+#### Writing more views:
 `polls/views.py`:
 {% highlight python %}
 def detail(request, question_id):
@@ -285,7 +290,7 @@ urlpatterns = [
 ]
 {% endhighlight %}
 
-### Write views that actually do something:
+#### Write views that actually do something:
 `polls/views.py`:
 {% highlight python %}
 from django.http import HttpResponse
@@ -327,7 +332,7 @@ def index(request):
 	return render(request, 'polls/index.html', context)
 {% endhighlight %}
 
-### Raising a 404 error:
+#### Raising a 404 error:
 `polls/views.py`:
 {% highlight python %}
 from django.http import Http404
@@ -355,7 +360,7 @@ def detail(request, question_id):
     return render(request, 'polls/detail.html', {'question': question})
 {% endhighlight %}
 
-### Use the template system:
+#### Use the template system:
 `polls/templates/polls/detail.html`:
 {% highlight html %}
 <h1>{ { question.question_text } }</h1>
@@ -366,7 +371,7 @@ def detail(request, question_id):
 </ul>
 {% endhighlight %}
 
-### Removing hardcoded URLs in templates:
+#### Removing hardcoded URLs in templates:
 `polls/templates/polls/index.html`:
 {% highlight html %}
 <li><a href="/polls/{ { question.id } }/">{ { question.question_text } }</a></li>
@@ -374,7 +379,7 @@ def detail(request, question_id):
 <li><a href="{ % url 'detail' question.id % }">{ { question.question_text } }</a></li>
 {% endhighlight %}
 
-### Namespacing URL names:
+#### Namespacing URL names:
 `mysite/urls.py`:
 {% highlight python %}
 from django.conf.urls import include, url
@@ -392,8 +397,122 @@ urlpatterns = [
 <li><a href="{ % url 'polls:detail' question.id % }">{ { question.question_text } }</a></li>
 {% endhighlight %}
 
+### 4. We’re continuing the Web-poll application and will focus on simple form processing and cutting down our code.
+#### Write a simple form:
+`polls/templates/polls/detail.html`:
+{% highlight html %}
+<h1>{ { question.question_text } }</h1>
+{ % if error_message % }<p><strong>{{ error_message }}</strong></p>{ % endif % }
+
+<form action="{ % url 'polls:vote' question.id % }" method="post">
+{ % csrf_token % }
+{ % for choice in question.choice_set.all % }
+    <input type="radio" name="choice" id="choice{ { forloop.counter } }" value="{ { choice.id } }" />
+    <label for="choice{ { forloop.counter } }">{ { choice.choice_text } }</label><br />
+{ % endfor % }
+<input type="submit" value="Vote" />
+</form>
+{% endhighlight %}
+`polls/views.py`:
+{% highlight python %}
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+
+from polls.models import Choice, Question
+# ...
+def vote(request, question_id):
+	p = get_object_or_404(Question, pk=question_id)
+	try:
+		selected_choice = p.choice_set.get(pk=request.POST['choice'])
+	except (KeyError, Choice.DoesNotExist):
+		return render(request, 'polls/detail.html', {
+			'question': p,
+			'error_message': "You didn't select a choice.",
+		})
+	else:
+		selected_choice.votes += 1
+		selected_choice.save()
+		return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+{% endhighlight %}
+`polls/views.py`:
+{% highlight python %}
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
+{% endhighlight %}
+Create a `polls/results.html` template:
+{% highlight html %}
+<h1>{ { question.question_text } }</h1>
+
+<ul>
+{ % for choice in question.choice_set.all % }
+    <li>{ { choice.choice_text } } -- { { choice.votes } } vote{ { choice.votes|pluralize } }</li>
+{ % endfor % }
+</ul>
+
+<a href="{ % url 'polls:detail' question.id % }">Vote again?</a>
+{% endhighlight %}
+
+#### Amend URLconf:
+First, open the `polls/urls.py` URLconf and change it like so:
+{% highlight python %}
+from django.conf.urls import url
+from polls import views
+
+urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^(?P<pk>[0-9]+)/results/$', views.ResultsView.as_view(), name='results'),
+    url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+]
+{% endhighlight %}
+
+#### Amend views:
+Next, we’re going to remove our old index, detail, and results views and use Django’s generic views instead. To do so, open the `polls/views.py` file and change it like so:
+{% highlight python %}
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.views import generic
+from polls.models import Choice, Question
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+
+def vote(request, question_id):
+    ... # same as above
+{% endhighlight %}
+
+
+{% highlight python %}
+{% endhighlight %}
+{% highlight python %}
+{% endhighlight %}
+{% highlight python %}
+{% endhighlight %}
+{% highlight python %}
+{% endhighlight %}
+{% highlight python %}
+{% endhighlight %}
+{% highlight python %}
+{% endhighlight %}
 
 #### Resource:
 * [Writing your first Django app, part 1](https://docs.djangoproject.com/en/dev/intro/tutorial01/)
 * [Writing your first Django app, part 2](https://docs.djangoproject.com/en/dev/intro/tutorial02/)
 * [Writing your first Django app, part 3](https://docs.djangoproject.com/en/dev/intro/tutorial03/)
+* [Writing your first Django app, part 4](https://docs.djangoproject.com/en/dev/intro/tutorial04/)
