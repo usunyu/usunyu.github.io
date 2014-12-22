@@ -700,10 +700,27 @@ class QuestionIndexDetailTests(TestCase):
         self.assertContains(response, past_question.question_text, status_code=200)
 {% endhighlight %}
 
+### 6. We’ve built a tested Web-poll application, and we’ll now add a stylesheet and an image.
+#### Customize your app’s look and feel
+Put the following code in that stylesheet (`polls/static/polls/style.css`):
+{% highlight css %}
+li a {
+    color: green;
+}
+{% endhighlight %}
+Next, add the following at the top of `polls/templates/polls/index.html`:
 {% highlight python %}
+{ % load staticfiles % }
+
+<link rel="stylesheet" type="text/css" href="{ % static 'polls/style.css' % }" />
 {% endhighlight %}
 
-{% highlight python %}
+#### Adding a background-image:
+`polls/static/polls/style.css`:
+{% highlight css %}
+body {
+    background: white url("images/background.gif") no-repeat right bottom;
+}
 {% endhighlight %}
 
 #### Resource:
@@ -712,3 +729,4 @@ class QuestionIndexDetailTests(TestCase):
 * [Writing your first Django app, part 3](https://docs.djangoproject.com/en/dev/intro/tutorial03/)
 * [Writing your first Django app, part 4](https://docs.djangoproject.com/en/dev/intro/tutorial04/)
 * [Writing your first Django app, part 5](https://docs.djangoproject.com/en/dev/intro/tutorial05/)
+* [Writing your first Django app, part 6](https://docs.djangoproject.com/en/dev/intro/tutorial06/)
