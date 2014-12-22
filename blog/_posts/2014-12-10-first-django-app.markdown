@@ -83,17 +83,17 @@ $ python manage.py migrate
 {% highlight bash %}
 $ python manage.py shell
 
-> from polls.models import Question, Choice
-> Question.objects.all()
-> from django.utils import timezone
-> q = Question(question_text="What's new?", pub_date=timezone.now())
-> q.save()
-> q.id
-> q.question_text
-> q.pub_date
-> q.question_text = "What's up?"
-> q.save()
-> Question.objects.all()
+>>> from polls.models import Question, Choice
+>>> Question.objects.all()
+>>> from django.utils import timezone
+>>> q = Question(question_text="What's new?", pub_date=timezone.now())
+>>> q.save()
+>>> q.id
+>>> q.question_text
+>>> q.pub_date
+>>> q.question_text = "What's up?"
+>>> q.save()
+>>> Question.objects.all()
 {% endhighlight %}
 
 Edit `polls/models.py`, add functions:
@@ -118,28 +118,28 @@ class Choice(models.Model):
 {% endhighlight %}
 Run `python manage.py shell` again:
 {% highlight bash %}
-> from polls.models import Question, Choice
-> Question.objects.all()
-> Question.objects.filter(id=1)
-> Question.objects.filter(question_text__startswith='What')
-> from django.utils import timezone
-> current_year = timezone.now().year
-> Question.objects.get(pub_date__year=current_year)
-> Question.objects.get(id=2)
-> Question.objects.get(pk=1)
-> q = Question.objects.get(pk=1)
-> q.was_published_recently()
-> q = Question.objects.get(pk=1)
-> q.choice_set.all()
-> q.choice_set.create(choice_text='Not much', votes=0)
-> q.choice_set.create(choice_text='The sky', votes=0)
-> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
-> c.question
-> q.choice_set.all()
-> q.choice_set.count()
-> Choice.objects.filter(question__pub_date__year=current_year)
-> c = q.choice_set.filter(choice_text__startswith='Just hacking')
-> c.delete()
+>>> from polls.models import Question, Choice
+>>> Question.objects.all()
+>>> Question.objects.filter(id=1)
+>>> Question.objects.filter(question_text__startswith='What')
+>>> from django.utils import timezone
+>>> current_year = timezone.now().year
+>>> Question.objects.get(pub_date__year=current_year)
+>>> Question.objects.get(id=2)
+>>> Question.objects.get(pk=1)
+>>> q = Question.objects.get(pk=1)
+>>> q.was_published_recently()
+>>> q = Question.objects.get(pk=1)
+>>> q.choice_set.all()
+>>> q.choice_set.create(choice_text='Not much', votes=0)
+>>> q.choice_set.create(choice_text='The sky', votes=0)
+>>> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
+>>> c.question
+>>> q.choice_set.all()
+>>> q.choice_set.count()
+>>> Choice.objects.filter(question__pub_date__year=current_year)
+>>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
+>>> c.delete()
 {% endhighlight %}
 
 ### 2. We’re continuing the Web-poll application and will focus on Django’s automatically-generated admin site.
@@ -497,17 +497,212 @@ def vote(request, question_id):
     ... # same as above
 {% endhighlight %}
 
+### 5. We’ve built a Web-poll application, and we’ll now create some automated tests for it.
+#### Create a test to expose the bug:
+Put the following in the `tests.py` file in the polls application:
+{% highlight python %}
+import datetime
+
+from django.utils import timezone
+from django.test import TestCase
+
+from polls.models import Question
+
+class QuestionMethodTests(TestCase):
+
+    def test_was_published_recently_with_future_question(self):
+        """
+        was_published_recently() should return False for questions whose
+        pub_date is in the future
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        future_question = Question(pub_date=time)
+        self.assertEqual(future_question.was_published_recently(), False)
+{% endhighlight %}
+
+#### Running tests:
+{% highlight bash %}
+$ python manage.py test polls
+{% endhighlight %}
+
+#### Fixing the bug:
+`polls/models.py`:
+{% highlight python %}
+def was_published_recently(self):
+    now = timezone.now()
+    return now - datetime.timedelta(days=1) <= self.pub_date <= now
+{% endhighlight %}
+
+#### More comprehensive tests:
+`polls/tests.py`:
+{% highlight python %}
+def test_was_published_recently_with_old_question(self):
+    """
+    was_published_recently() should return False for questions whose
+    pub_date is older than 1 day
+    """
+    time = timezone.now() - datetime.timedelta(days=30)
+    old_question = Question(pub_date=time)
+    self.assertEqual(old_question.was_published_recently(), False)
+
+def test_was_published_recently_with_recent_question(self):
+    """
+    was_published_recently() should return True for questions whose
+    pub_date is within the last day
+    """
+    time = timezone.now() - datetime.timedelta(hours=1)
+    recent_question = Question(pub_date=time)
+    self.assertEqual(recent_question.was_published_recently(), True)
+{% endhighlight %}
+
+{% highlight bash %}
+$ python manage.py shell
+
+>>> from django.test.utils import setup_test_environment
+>>> setup_test_environment()
+>>> from django.test import Client
+>>> client = Client()
+>>> response = client.get('/')
+>>> response.status_code
+>>> from django.core.urlresolvers import reverse
+>>> response = client.get(reverse('polls:index'))
+>>> response.status_code
+>>> response.content
+>>> from polls.models import Question
+>>> from django.utils import timezone
+>>> q = Question(question_text="Who is your favorite Beatle?", pub_date=timezone.now())
+>>> q.save()
+>>> response = client.get('/polls/')
+>>> response.content
+>>> response.context['latest_question_list']
+{% endhighlight %}
+
+#### Improving our view:
+`polls/views.py`:
+{% highlight python %}
+from django.utils import timezone
+
+def get_queryset(self):
+    """
+    Return the last five published questions (not including those set to be
+    published in the future).
+    """
+    return Question.objects.filter(
+        pub_date__lte=timezone.now()
+    ).order_by('-pub_date')[:5]
+{% endhighlight %}
+
+#### Testing our new view:
+Add the following to `polls/tests.py`:
+{% highlight python %}
+from django.core.urlresolvers import reverse
+
+def create_question(question_text, days):
+    """
+    Creates a question with the given `question_text` published the given
+    number of `days` offset to now (negative for questions published
+    in the past, positive for questions that have yet to be published).
+    """
+    time = timezone.now() + datetime.timedelta(days=days)
+    return Question.objects.create(question_text=question_text,
+                                   pub_date=time)
+
+
+class QuestionViewTests(TestCase):
+    def test_index_view_with_no_questions(self):
+        """
+        If no questions exist, an appropriate message should be displayed.
+        """
+        response = self.client.get(reverse('polls:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+
+    def test_index_view_with_a_past_question(self):
+        """
+        Questions with a pub_date in the past should be displayed on the
+        index page
+        """
+        create_question(question_text="Past question.", days=-30)
+        response = self.client.get(reverse('polls:index'))
+        self.assertQuerysetEqual(
+            response.context['latest_question_list'],
+            ['<Question: Past question.>']
+        )
+
+    def test_index_view_with_a_future_question(self):
+        """
+        Questions with a pub_date in the future should not be displayed on
+        the index page.
+        """
+        create_question(question_text="Future question.", days=30)
+        response = self.client.get(reverse('polls:index'))
+        self.assertContains(response, "No polls are available.",
+                            status_code=200)
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+
+    def test_index_view_with_future_question_and_past_question(self):
+        """
+        Even if both past and future questions exist, only past questions
+        should be displayed.
+        """
+        create_question(question_text="Past question.", days=-30)
+        create_question(question_text="Future question.", days=30)
+        response = self.client.get(reverse('polls:index'))
+        self.assertQuerysetEqual(
+            response.context['latest_question_list'],
+            ['<Question: Past question.>']
+        )
+
+    def test_index_view_with_two_past_questions(self):
+        """
+        The questions index page may display multiple questions.
+        """
+        create_question(question_text="Past question 1.", days=-30)
+        create_question(question_text="Past question 2.", days=-5)
+        response = self.client.get(reverse('polls:index'))
+        self.assertQuerysetEqual(
+            response.context['latest_question_list'],
+            ['<Question: Past question 2.>', '<Question: Past question 1.>']
+        )
+{% endhighlight %}
+
+#### Testing the DetailView:
+`polls/views.py`:
+{% highlight python %}
+class DetailView(generic.DetailView):
+    ...
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
+{% endhighlight %}
+`polls/tests.py`:
+{% highlight python %}
+class QuestionIndexDetailTests(TestCase):
+    def test_detail_view_with_a_future_question(self):
+        """
+        The detail view of a question with a pub_date in the future should
+        return a 404 not found.
+        """
+        future_question = create_question(question_text='Future question.', days=5)
+        response = self.client.get(reverse('polls:detail', args=(future_question.id,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_with_a_past_question(self):
+        """
+        The detail view of a question with a pub_date in the past should
+        display the question's text.
+        """
+        past_question = create_question(question_text='Past Question.', days=-5)
+        response = self.client.get(reverse('polls:detail', args=(past_question.id,)))
+        self.assertContains(response, past_question.question_text, status_code=200)
+{% endhighlight %}
 
 {% highlight python %}
 {% endhighlight %}
-{% highlight python %}
-{% endhighlight %}
-{% highlight python %}
-{% endhighlight %}
-{% highlight python %}
-{% endhighlight %}
-{% highlight python %}
-{% endhighlight %}
+
 {% highlight python %}
 {% endhighlight %}
 
@@ -516,3 +711,4 @@ def vote(request, question_id):
 * [Writing your first Django app, part 2](https://docs.djangoproject.com/en/dev/intro/tutorial02/)
 * [Writing your first Django app, part 3](https://docs.djangoproject.com/en/dev/intro/tutorial03/)
 * [Writing your first Django app, part 4](https://docs.djangoproject.com/en/dev/intro/tutorial04/)
+* [Writing your first Django app, part 5](https://docs.djangoproject.com/en/dev/intro/tutorial05/)
