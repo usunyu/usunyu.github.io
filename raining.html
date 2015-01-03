@@ -30,7 +30,7 @@ img {
 		var rand = Math.floor((Math.random() * 5) + 1);
 		image.src = 'public/images/raining/1.jpg';
 	}
-	function change_image() {
+	function changeImage() {
 		var image = document.getElementById('background');
 		var rand = Math.floor((Math.random() * 5) + 1);
 		image.src = 'public/images/raining/' + rand + '.jpg';
@@ -38,7 +38,7 @@ img {
 </script>
 <title>Enjoy Raining</title>
 </head>
-<body onLoad="run();" onclick="change_image()">
+<body onLoad="run();" onclick="changeImage()">
 	<img id="background" alt="background" src="public/images/raining/1.jpg" />
 	<embed src="public/music/Rhythm of the Rain.mp3" autostart="true" loop="true" width="2" height="0"></embed>
 </body>

@@ -171,6 +171,16 @@ function t() {
 	}
 }
  
+function playMusic(el,soundfile) {
+	if (el.mp3) {
+		if(el.mp3.paused) el.mp3.play();
+		else el.mp3.pause();
+	} else {
+		el.mp3 = new Audio(soundfile);
+		el.mp3.play();
+	}
+}
+
 </script> 
 <div id="console"></div> 
 <script type="text/javascript">
@@ -180,9 +190,9 @@ function t() {
   _gaq.push(['_trackPageview']);
 
   (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
 </script>
