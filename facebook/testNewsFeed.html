@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test /user/home</title>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var ACCESS_TOKEN = '';
+    var URL = '/me/home';
+    var counter_1 = 0;
+    var counter_2 = 0;
+
+    var FBTest = {
+      getAccessToken: function() {
+        var accessToken = $('#access-token-field').val();
+        if (!accessToken) {
+          alert('Paste an access token into the text field');
+        } else {
+          return accessToken;
+        }
+      },
+
+      get100: function(url) {
+        var accessToken = this.getAccessToken() || ACCESS_TOKEN;
+        if (accessToken) {
+          $('#btnGet100').html('Querying...');
+          var url = url || 'https://graph.facebook.com/v2.2' + URL + '/?limit=100&access_token=' + accessToken;
+          $.get(url).then(function(response) {
+            if (response.data.length > 0) {
+              var first_date = response.data[0].created_time;
+              var last_date = response.data[response.data.length - 1].created_time;
+              var out = '<p>Got ' + response.data.length + ' items from ' + first_date + ' to ' + last_date + '.</p>';
+              $('#logs100').append(out);
+
+              counter_1 += response.data.length;
+              $('#totalCount_1').html(counter_1);
+
+              if (response.paging.next && (response.paging.next !== '')) {
+                FBTest.get100(response.paging.next);
+              }
+            } else {
+              $('#logs100').append('<p>No more data</p>');
+            }
+          });
+        }
+      },
+
+      get10: function(url) {
+        var accessToken = this.getAccessToken() || ACCESS_TOKEN;
+        if (accessToken) {
+          $('#btnGet10').html('Querying...')
+          var url = url || 'https://graph.facebook.com/v2.2' + URL + '/?limit=20&access_token=' + accessToken;
+          $.get(url).then(function(response) {
+            if (response.data.length > 0) {
+              var first_date = response.data[0].created_time;
+              var last_date = response.data[response.data.length - 1].created_time;
+              var out = '<p>Got ' + response.data.length + ' items from ' + first_date + ' to ' + last_date + '.</p>';
+              $('#logs10').append(out);
+
+              counter_2 += response.data.length;
+              $('#totalCount_2').html(counter_2);
+
+              if (response.paging.next && (response.paging.next !== '')) {
+                FBTest.get10(response.paging.next);
+              }
+            } else {
+              $('#logs10').append('<p>No more data</p>');
+            }
+          });
+        }
+      }
+    }
+
+    $(document).ready(function() {
+      $('#access-token-field').val(ACCESS_TOKEN);
+    });
+  </script>
+</head>
+<body>
+
+<p>
+  Access token: <input type="text" style="width: 100%;" id="access-token-field"/>
+</p>
+
+<hr/>
+
+<button id="btnGet100" onClick="FBTest.get100();">Get posts with limit=100</button>
+<p>
+  Total: <span id="totalCount_1">0</span>
+</p>
+<div id="logs100">
+</div>
+
+<hr/>
+
+<button id="btnGet10" onClick="FBTest.get10();">Get posts withlimit=20</button>
+<p>
+  Total: <span id="totalCount_2">0</span>
+</p>
+<div id="logs10"></div>
+
+</body>
+</html>
