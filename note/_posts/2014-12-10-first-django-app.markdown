@@ -4,7 +4,7 @@ title: Writing your first Django app
 ---
 ### 1. Throughout this tutorial, we’ll walk you through the creation of a basic poll application.
 ---
-#### Check Django is installed and which version ([Setup Django](/blog/2014/12/06/setup-django/)):
+#### Check Django is installed and which version ([Setup Django](/note/2014/12/06/setup-django/)):
 {% highlight bash %}
 $ python -c "import django; print(django.get_version())"
 {% endhighlight %}
