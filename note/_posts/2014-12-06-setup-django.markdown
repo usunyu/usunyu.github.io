@@ -36,6 +36,7 @@ In order to actually build projects, we need to make sure our computer is setup.
 
 		(somename)$ pip install django==1.4.5
 		(somename)$ pip install django --upgrade
+	Tip: replace first line with `#!/usr/bin/env python` in `bin/easy_install`, etc.
 
 7. Deactivate virtual environments:
 
