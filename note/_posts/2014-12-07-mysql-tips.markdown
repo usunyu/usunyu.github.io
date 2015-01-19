@@ -40,4 +40,4 @@ $ mysql -u user -p db-name < db-name.out
 #### Resource:
 * [www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/](http://www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/)
 * [www.wikihow.com/Create-a-Database-in-MySQL](http://www.wikihow.com/Create-a-Database-in-MySQL)
-* [http://www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server.html](http://www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server.html)
+* [www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server](http://www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server.html)
