@@ -31,6 +31,13 @@ mysql> INSERT INTO user (id, username, passward) VALUES (NULL, 'name', 'secrect'
 mysql> INSERT INTO user (id, username, passward) VALUES (NULL, 'name2', 'secrect2'), (NULL, 'name3', 'secrect3'), (NULL, 'name4', 'secrect4');
 {% endhighlight %}
 
+#### Export, Import MySQL Database
+{% highlight bash %}
+$ mysqldump -u user -p db-name > db-name.out
+$ mysql -u user -p db-name < db-name.out
+{% endhighlight %}
+
 #### Resource:
 * [www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/](http://www.cyberciti.biz/faq/mysql-command-to-show-list-of-databases-on-server/)
 * [www.wikihow.com/Create-a-Database-in-MySQL](http://www.wikihow.com/Create-a-Database-in-MySQL)
+* [http://www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server.html](http://www.cyberciti.biz/tips/howto-copy-mysql-database-remote-server.html)
