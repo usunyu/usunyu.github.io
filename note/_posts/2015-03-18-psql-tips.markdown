@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Postgres Command Tips"
+---
+#### List all databases:
+{% highlight bash %}
+$ \list
+$ \l
+{% endhighlight %}
+
+#### List all tables in the current database:
+{% highlight bash %}
+$ \dt
+{% endhighlight %}
+
+#### Switch databases:
+{% highlight bash %}
+$ \connect database_name
+{% endhighlight %}
+
+#### Resource:
+* [how-do-i-list-all-databases-and-tables-using-psql](http://dba.stackexchange.com/questions/1285/how-do-i-list-all-databases-and-tables-using-psql)
