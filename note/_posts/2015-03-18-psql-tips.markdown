@@ -18,5 +18,10 @@ $ \dt
 $ \connect database_name
 {% endhighlight %}
 
+#### Describe Table:
+{% highlight bash %}
+$ \d+ tablename
+{% endhighlight %}
+
 #### Resource:
 * [how-do-i-list-all-databases-and-tables-using-psql](http://dba.stackexchange.com/questions/1285/how-do-i-list-all-databases-and-tables-using-psql)
