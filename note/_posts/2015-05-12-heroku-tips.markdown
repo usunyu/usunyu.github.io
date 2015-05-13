@@ -13,7 +13,6 @@ $ heroku vim
 {% highlight bash %}
 $ heroku addons:create scheduler:standard
 {% endhighlight %}
-
 2. Defining tasks `app/bin/ping_server.py`:
 {% highlight python %}
 import urllib2
@@ -26,12 +25,10 @@ except ValueError, ex:
 except urllib2.URLError, ex:
     print "URL don't seem to be alive"
 {% endhighlight %}
-
 3. Testing tasks:
 {% highlight bash %}
 $ heroku run python bin/ping_server.py
 {% endhighlight %}
-
 4. Scheduling jobs:
 {% highlight bash %}
 $ heroku addons:open scheduler
