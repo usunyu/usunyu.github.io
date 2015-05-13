@@ -9,11 +9,12 @@ $ heroku vim
 {% endhighlight %}
 
 #### Keep Heroku Alive:
-1. Installing the Scheduler add-on:
+##### 1. Installing the Scheduler add-on:
 {% highlight bash %}
 $ heroku addons:create scheduler:standard
 {% endhighlight %}
-2. Defining tasks `app/bin/ping_server.py`:
+
+##### 2. Defining tasks `app/bin/ping_server.py`:
 {% highlight python %}
 import urllib2
 
@@ -25,11 +26,13 @@ except ValueError, ex:
 except urllib2.URLError, ex:
     print "URL don't seem to be alive"
 {% endhighlight %}
-3. Testing tasks:
+
+##### 3. Testing tasks:
 {% highlight bash %}
 $ heroku run python bin/ping_server.py
 {% endhighlight %}
-4. Scheduling jobs:
+
+##### 4. Scheduling jobs:
 {% highlight bash %}
 $ heroku addons:open scheduler
 {% endhighlight %}
