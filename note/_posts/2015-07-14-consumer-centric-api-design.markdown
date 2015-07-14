@@ -6,7 +6,6 @@ title:  "Consumer-Centric API Design"
 ##### 1. Good Abstraction
 {% highlight bash %}
 Creating a Notification
-
 POST /notifications
 {
   "user_id": "12",
