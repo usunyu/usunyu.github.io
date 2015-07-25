@@ -2,13 +2,22 @@
 layout: post
 title:  "Heroku Command Tips"
 ---
-#### Add Vim:
+### Add Vim:
 {% highlight bash %}
 $ heroku plugins:install https://github.com/naaman/heroku-vim
 $ heroku vim
 {% endhighlight %}
 
-#### Keep Heroku Alive:
+### Staging:
+##### 1. Starting from scratch:
+{% highlight bash %}
+$ heroku create --remote staging
+$ git push staging master
+
+$ heroku ps --remote staging
+{% endhighlight %}
+
+### Keep Heroku Alive:
 ##### 1. Installing the Scheduler add-on:
 {% highlight bash %}
 $ heroku addons:create scheduler:standard
