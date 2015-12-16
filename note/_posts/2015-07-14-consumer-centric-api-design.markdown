@@ -2,7 +2,7 @@
 layout: post
 title:  "Consumer-Centric API Design"
 ---
-## Examples of Abstraction:
+### Examples of Abstraction:
 ##### 1. Good Abstraction
 Creating a Notification
 {% highlight bash %}
@@ -38,7 +38,7 @@ POST /users/12/send_{medium}
 }
 {% endhighlight %}
 
-## Anatomy of an HTTP Message:
+### Anatomy of an HTTP Message:
 ##### 1. HTTP Request
 {% highlight bash %}
 POST /v1/animal HTTP/1.1
@@ -52,7 +52,7 @@ Content-Length: 24
 }
 {% endhighlight %}
 
-##### 1. HTTP Response
+##### 2. HTTP Response
 {% highlight bash %}
 HTTP/1.1 200 OK
 Date: Wed, 18 Dec 2013 06:08:22 GMT
@@ -68,7 +68,7 @@ Cache-Control: no-cache
 }
 {% endhighlight %}
 
-## HTTP Methods:
+### HTTP Methods:
 {% highlight bash %}
 • GET (Read)
 – Retrieve a specific Resource from the Server
@@ -109,7 +109,7 @@ Cache-Control: no-cache
 – Considered Idempotent: duplicate subsequent requests should be side-effect free
 {% endhighlight %}
 
-## URL Endpoints:
+### URL Endpoints:
 If you were building a fictional API to represent several different Zoo’s, each containing many Animals (with an animal belonging to exactly one Zoo), employees (who can work at multiple Zoos) and keeping track of the species of each animal, you might have the following endpoints:
 
 ##### 1. Top-Level Collections
