@@ -2,6 +2,23 @@
 layout: post
 title:  "Postgres Command Tips"
 ---
+#### Create databases:
+{% highlight bash %}
+$ CREATE DATABASE name
+    [ [ WITH ] [ OWNER [=] user_name ]
+           [ TEMPLATE [=] template ]
+           [ ENCODING [=] encoding ]
+           [ LC_COLLATE [=] lc_collate ]
+           [ LC_CTYPE [=] lc_ctype ]
+           [ TABLESPACE [=] tablespace ]
+           [ CONNECTION LIMIT [=] connlimit ] ]
+{% endhighlight %}
+
+#### Drop databases:
+{% highlight bash %}
+$ DROP DATABASE [ IF EXISTS ] name
+{% endhighlight %}
+
 #### List all databases:
 {% highlight bash %}
 $ \list
@@ -24,4 +41,5 @@ $ \d+ tablename
 {% endhighlight %}
 
 #### Resource:
+* [PostgreSQL Latest Documentation](http://www.postgresql.org/docs/current/static/index.html)
 * [how-do-i-list-all-databases-and-tables-using-psql](http://dba.stackexchange.com/questions/1285/how-do-i-list-all-databases-and-tables-using-psql)
