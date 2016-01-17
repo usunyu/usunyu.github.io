@@ -16,7 +16,7 @@ $ brew install android-platform-tools
 {% endhighlight %}
 
 ##### 3. Start using adb:
-{% highlight python %}
+{% highlight bash %}
 $ adb devices
 {% endhighlight %}
 
