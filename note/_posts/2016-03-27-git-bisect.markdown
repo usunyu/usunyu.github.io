@@ -8,5 +8,5 @@ $ git bisect reset
 
 $ git bisect start
 $ git bisect bad
-$ git bisect good <commit>
+$ git bisect good 'commit'
 {% endhighlight %}
