@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "git bisect"
+title:  "Git Bisect"
 ---
 
 {% highlight bash %}
