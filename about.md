@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-<div align="center">
-	<img src="/public/images/me.jpg" />
+<div align="left">
+	<img src="/public/images/me.jpg" width="300px" />
 </div>
 
-I am Yu Sun, a Software Engineer from Facebook. I consider myself a quick learner and have considerable passion to build great apps.
+I am Yu Sun, a Software Engineer from Facebook. I consider myself a quick learner and have considerable passion to build great softwares.
 
 You can find the source code for this website at [github.com/usunyu/usunyu.github.io](https://github.com/usunyu/usunyu.github.io)
