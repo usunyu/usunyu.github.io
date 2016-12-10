@@ -23,4 +23,6 @@ $ ffmpeg -i output.mp4 -ss 0 -t 60 first-60-sec.mp4
 {% endhighlight %}
 
 ### Replace old audio stream with target audio stream
-ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 output.mp4
+{% highlight bash %}
+$ ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 output.mp4
+{% endhighlight %}
