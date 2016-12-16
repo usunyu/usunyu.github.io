@@ -106,5 +106,32 @@ int main() {
 }
 {% endhighlight %}
 
+### Use boost on Windows:
+
+##### 1. Install [boost](http://www.boost.org/doc/libs/1_62_0/more/getting_started/windows.html):
+{% highlight bash %}
+$ bootstrap
+$ b2 toolset=msvc --build-type=complete stage
+{% endhighlight %}
+
+##### 2. Setup Visual Studio:
+VC++ Directories -> Include Directories:
+
+C/C++ -> Generial -> Additional Include Directories:
+
+Linker -> Generial -> Additional Include Directories:
+
+{% highlight bash %}
+boost
+boost/stage/lib
+{% endhighlight %}
+
+C/C++ -> Precompiled Headers
+
+{% highlight bash %}
+Not Using Precompiled Headers
+{% endhighlight %}
+
 #### Resource:
 * [Boost C++ 库 第 11 章 序列化](http://zh.highscore.de/cpp/boost/serialization.html)
+* [How to set up Boost in Visual Studio 2012 on Windows 8](https://www.youtube.com/watch?v=6trC5zVXzG0)
