@@ -111,23 +111,21 @@ int main() {
 ##### 1. Install [boost](http://www.boost.org/doc/libs/1_62_0/more/getting_started/windows.html):
 {% highlight bash %}
 $ bootstrap
-$ b2 toolset=msvc --build-type=complete stage
+$ .\b2 --build-type=complete  address-model=64
 {% endhighlight %}
 
 ##### 2. Setup Visual Studio:
 VC++ Directories -> Include Directories:
-
-C/C++ -> Generial -> Additional Include Directories:
-
-Linker -> Generial -> Additional Include Directories:
-
 {% highlight bash %}
 boost
+{% endhighlight %}
+
+VC++ Directories -> Library Directories:
+{% highlight bash %}
 boost/stage/lib
 {% endhighlight %}
 
-C/C++ -> Precompiled Headers
-
+C/C++ -> Precompiled Headers:
 {% highlight bash %}
 Not Using Precompiled Headers
 {% endhighlight %}
