@@ -4,6 +4,7 @@ title: Unity Editor and Player Log File
 ---
 
 ### Editor Logs:
+
 ##### Windows XP:
 C:\Documents and Settings\YOUR_USERNAME\Local Settings\Application Data\Unity\Editor.
 
@@ -14,6 +15,7 @@ C:\Users\YOUR_USERNAME\AppData\Local\Unity\Editor
 ~/Library/Logs/Unity/
 
 ### WebPlayer Logs:
+
 ##### Windows XP:
 C:\Documents and Settings\YOUR_USERNAME\Local Settings\temp\UnityWebPlayer\log
 
