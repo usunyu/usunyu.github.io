@@ -10,6 +10,6 @@ permalink: /about/
 
 I am Yu Sun, was Software Engineer from Facebook. I consider myself a quick learner and have considerable passion to build great softwares.
 
-Now I am starting my new new journey :)
+Now I am starting my new journey :)
 
 You can find the source code for this website at [github.com/usunyu/usunyu.github.io](https://github.com/usunyu/usunyu.github.io)
