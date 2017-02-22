@@ -3,6 +3,7 @@ layout: post
 title:  "Consumer-Centric API Design"
 ---
 ### Examples of Abstraction:
+
 ##### 1. Good Abstraction
 Creating a Notification
 {% highlight bash %}
@@ -39,6 +40,7 @@ POST /users/12/send_{medium}
 {% endhighlight %}
 
 ### Anatomy of an HTTP Message:
+
 ##### 1. HTTP Request
 {% highlight bash %}
 POST /v1/animal HTTP/1.1
