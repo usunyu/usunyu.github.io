@@ -3,15 +3,13 @@ layout: post
 title: Sublime Tips
 ---
 
-#### Terminal Setup for Mac:
-
+### Terminal Setup for Mac:
 {% highlight bash %}
 $ ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 {% endhighlight %}
 
 
-#### Support Chinese:
-
+### Support Chinese:
 ###### ctrl + `, open console and input:
 {% highlight bash %}
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
@@ -24,8 +22,7 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 ###### Install "ConvertToUTF8" or "GBK Encoding Support"
 
 
-#### Key Binding Setup for Windows:
-
+### Key Binding Setup for Windows:
 {% highlight bash %}
 [
     { "keys": ["ctrl+1"], "command": "select_by_index", "args": { "index": 0 } },
