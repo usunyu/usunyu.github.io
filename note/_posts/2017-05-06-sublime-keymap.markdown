@@ -4,6 +4,7 @@ title: Sublime Text Keymap
 ---
 
 {% highlight bash %}
+[
     { "keys": ["ctrl+1"], "command": "select_by_index", "args": { "index": 0 } },
     { "keys": ["ctrl+2"], "command": "select_by_index", "args": { "index": 1 } },
     { "keys": ["ctrl+3"], "command": "select_by_index", "args": { "index": 2 } },
@@ -15,4 +16,5 @@ title: Sublime Text Keymap
     { "keys": ["ctrl+9"], "command": "select_by_index", "args": { "index": 8 } },
     { "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
     { "keys": ["ctrl+shift+g"], "command": "find_all_under" },
+]
 {% endhighlight %}
