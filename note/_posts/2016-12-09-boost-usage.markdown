@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Use boost for serialization"
+title:  "Use Boost for Serialization"
 ---
 
 ### Use boost on MacOS:

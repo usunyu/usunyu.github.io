@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "FFmpeg useful commands"
+title:  "FFmpeg Useful Commands"
 ---
 
 ### Download and install [ffmpeg](http://www.ffmpeg.org/download.html)
