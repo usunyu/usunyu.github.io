@@ -4,7 +4,6 @@ title: Autohotkey Mac Key Mapping
 ---
 
 ```
-
 ; NEEDS '*' because LCtrl key-repeat is otherwise interpreted as ALT+LCtrl.
 *LCtrl::
    CtrlTabbed := false`
