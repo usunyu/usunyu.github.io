@@ -3,7 +3,7 @@ layout: post
 title: Autohotkey Mac Key Mapping
 ---
 
-{% highlight bash %}
+```
 
 ; NEEDS '*' because LCtrl key-repeat is otherwise interpreted as ALT+LCtrl.
 *LCtrl::
@@ -53,4 +53,4 @@ AltTab:
     Send {Blind}{Tab}           ; Press Tab without releasing any modifiers.
 return
 
-{% endhighlight %}
+```
