@@ -3,6 +3,8 @@ layout: post
 title: Autohotkey Mac Key Mapping
 ---
 
+### Add file `Ctrl-Alt-Switch.ahk` to `shell:startup`:
+
 ```
 ; NEEDS '*' because LCtrl key-repeat is otherwise interpreted as ALT+LCtrl.
 *LCtrl::
