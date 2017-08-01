@@ -15,7 +15,7 @@ img {
 	height: 100%;
 }
 </style>
-<script src="public/js/rainyday.0.1.2.min.js" type="text/javascript"></script>
+<script src="js/rainyday.0.1.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function run() {
 		var image = document.getElementById('background');
@@ -28,13 +28,13 @@ img {
 		}
 		image.crossOrigin = 'anonymous';
 		var rand = Math.floor((Math.random() * 2) + 1);
-		image.src = 'public/images/raining/' + rand + '.jpg';
+		image.src = 'images/' + rand + '.jpg';
 	}
 </script>
 <title>Enjoy Raining</title>
 </head>
 <body onLoad="run();">
 	<img id="background" />
-	<embed src="public/music/Rhythm of the Rain.mp3" autostart="true" loop="true" width="2" height="0"></embed>
+	<embed src="musics/Rhythm of the Rain.mp3" autostart="true" loop="true" width="2" height="0"></embed>
 </body>
 </html>
