@@ -4,37 +4,56 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style media="screen">
 body {
-	overflow: hidden;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 img {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 </style>
+<!-- ===============    preloader core css     =============== -->
+<link rel="stylesheet" type="text/css" href="css/preloader.min.css" media="all" />
+<!-- ===============    rainyday core js     =============== -->
 <script src="js/rainyday.0.1.2.min.js" type="text/javascript"></script>
+<!-- ===============    jQuery core jquery     =============== -->
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<!-- ===============    preloader core jquery     =============== -->
+<script src="js/preloader.js" type="text/javascript"></script>
 <script type="text/javascript">
-	function run() {
-		var image = document.getElementById('background');
-		image.onload = function() {
-			var engine = new RainyDay({
-				image : this,
-			});
-			engine.rain([ [ 1, 2, 8000 ] ]);
-			engine.rain([ [ 3, 3, 0.88 ], [ 5, 5, 0.9 ], [ 6, 2, 1 ] ], 100);
-		}
-		image.crossOrigin = 'anonymous';
-		var rand = Math.floor((Math.random() * 2) + 1);
-		image.src = 'images/' + rand + '.jpg';
-	}
+    function run() {
+        var image = document.getElementById('background');
+        image.onload = function() {
+            var engine = new RainyDay({
+                image : this,
+            });
+            engine.rain([ [ 1, 2, 8000 ] ]);
+            engine.rain([ [ 3, 3, 0.88 ], [ 5, 5, 0.9 ], [ 6, 2, 1 ] ], 100);
+            // $(window).trigger("scroll");
+            // $(window).trigger("resize");
+            $("#content-preloader").fadeOut('fast');
+            $("#atom-preloader").fadeOut("slow");
+        }
+        image.crossOrigin = 'anonymous';
+        var rand = Math.floor((Math.random() * 2) + 1);
+        image.src = 'images/' + rand + '.jpg';
+    }
 </script>
-<title>Enjoy Raining</title>
+<title>Enjoy the rainy day :)</title>
 </head>
 <body onLoad="run();">
-	<img id="background" />
-	<embed src="musics/Rhythm of the Rain.mp3" autostart="true" loop="true" width="2" height="0"></embed>
+    <!-- preloader -->
+    <div id="atom-preloader">
+        <div class="atom-preloader-circle"></div>
+    </div>
+    <!--/ preloader -->
+    <!-- content preloader -->
+    <div id="content-preloader"></div>
+    <!--/ content preloader -->
+    <img id="background" />
+    <embed src="musics/Rhythm_of_the_Rain.mp3" type="audio/mpeg" autostart="true" loop="true" width="2" height="0"></embed>
 </body>
 </html>

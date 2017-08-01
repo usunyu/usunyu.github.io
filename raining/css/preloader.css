@@ -1,0 +1,59 @@
+#atom-preloader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999999;
+  display: block;
+  background-color: #fff;
+}
+
+.atom-preloader-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 2px solid;
+  border-top-color: rgba(0, 0, 0, 0.65);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+  border-left-color: rgba(0, 0, 0, 0.65);
+  border-right-color: rgba(0, 0, 0, 0.15);
+  -webkit-animation: atom-preloader-circle 0.8s linear infinite;
+  animation: atom-preloader-circle 0.8s linear infinite;
+}
+
+@keyframes atom-preloader-circle {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes atom-preloader-circle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+#content-preloader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 2px solid;
+  -webkit-animation: atom-preloader-circle 0.8s linear infinite;
+  animation: atom-preloader-circle 0.8s linear infinite;
+  z-index: 99;
+}
