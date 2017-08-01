@@ -3,6 +3,7 @@ usunyu.com
 
 #### Welcome to my personal website
 
+##### Credits:
 * Linux Terminal Theme from: [Make Your Website Look Like A Linux Terminal](https://www.youtube.com/watch?v=8FLUrb0Wz2Y)
 * Jekyll Blog: [Blogging with Jekyll] (https://help.github.com/articles/using-jekyll-with-pages/)
 * Jekyll Theme: [Lanyon] (https://github.com/poole/lanyon)
