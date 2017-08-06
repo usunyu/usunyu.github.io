@@ -7,7 +7,7 @@ permalink: /projects/
 * 2013 - [Clear Path](http://usunyu.com/ClearPath/): A new smart phone app helps navigate driving with an accurate travel time estimation.
 [![](../public/images/clear_path.jpg)](http://imsc.usc.edu/ClearPathNew/)
 * 2013 - [Joker Jumper](http://usunyu.com/JokerJumper/): An amazing iOS, dual-gravity running game, based on Cocos2D and Box2D framework.
-[![IMAGE](http://img.youtube.com/vi/trFJsnU8M6Q/0.jpg)](http://www.youtube.com/watch?v=trFJsnU8M6Q "Joker Jumper Trailer ")
+[![IMAGE](http://img.youtube.com/vi/trFJsnU8M6Q/maxresdefault.jpg)](http://www.youtube.com/watch?v=trFJsnU8M6Q "Joker Jumper Trailer ")
 * 2014 - [Speech Helper](https://scv-slide.appspot.com/): First Google Glass App by Chinese team, provides the user with an effective way to deliver a seamless speech.
 [![](../public/images/speach_helper.png)](https://glass.google.com/u/0/glassware/1236080004439488779)
 * 2014 - [Picknese](https://picknese.herokuapp.com/): The platform to let students to help each others, such as pick up, carpool, etc.
