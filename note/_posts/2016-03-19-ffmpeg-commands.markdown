@@ -26,3 +26,13 @@ $ ffmpeg -i output.mp4 -ss 0 -t 60 first-60-sec.mp4
 {% highlight bash %}
 $ ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 output.mp4
 {% endhighlight %}
+
+### Concatenate multipe video files
+{% highlight bash %}
+$ cat concat.txt
+file '/path/to/video1.mp4'
+file '/path/to/video2.mp4'
+file '/path/to/video3.mp4'
+
+$ ffmpeg -f concat -i concat.txt -c copy output.mp4
+{% endhighlight %}
