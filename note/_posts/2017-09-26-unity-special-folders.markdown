@@ -109,5 +109,5 @@ Used to replace the default web page used for web builds. Any scripts placed her
 Any files in here are copied to the build folder as is, without any changes (except for mobile and web builds, where they get embedded into the final build file). The path where they are can vary per platform but is accessible via Application.streamingAssetsPath (http://docs.unity3d.com/Documentation/ScriptReference/Application-streamingAssetsPath.html) Also see http://docs.unity3d.com/Documentation/Manual/StreamingAssets.html
 
 
-#### Reference:
-* [Special Folder Names in your Assets Folder](http://wiki.unity3d.com/index.php/Special_Folder_Names_in_your_Assets_Folder)
+### Reference:
+[Special Folder Names in your Assets Folder](http://wiki.unity3d.com/index.php/Special_Folder_Names_in_your_Assets_Folder)
