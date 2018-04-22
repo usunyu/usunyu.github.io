@@ -20,6 +20,6 @@ permalink: /projects/
 [![](../public/images/vrcapture.png)](https://www.assetstore.unity3d.com/en/#!/content/75654)
 * 2017 - [AR Meow](http://innovis.io/arcat/): AR Cat & Your Mini Pet.
 [![](../public/images/armeow.jpg)](https://itunes.apple.com/us/app/meow-ar-cat-your-mini-pet/id1278831491)
-# 2018 - [Crypto Alpaca](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd) Mascot of Bitcoin!
+* 2018 - [Crypto Alpaca](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd) Mascot of Bitcoin!
 [![](../public/images/crypto_alpaca.jpeg)](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd)
 * More coming soon...
