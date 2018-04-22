@@ -18,4 +18,8 @@ permalink: /projects/
 [![](../public/images/moon_player.png)](https://www2.oculus.com/experiences/app/945657588886188/)
 * 2016 - [VR Capture](https://github.com/RockVR/VRCapture): Unity plugins for VR Game Capture & Share experience.
 [![](../public/images/vrcapture.png)](https://www.assetstore.unity3d.com/en/#!/content/75654)
+* 2017 - [AR Meow](http://innovis.io/arcat/): AR Cat & Your Mini Pet.
+[![](../public/images/armeow.jpg)](https://itunes.apple.com/us/app/meow-ar-cat-your-mini-pet/id1278831491)
+# 2018 - [Crypto Alpaca](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd) Mascot of Bitcoin!
+[![](../public/images/crypto_alpaca.jpeg)](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd)
 * More coming soon...
