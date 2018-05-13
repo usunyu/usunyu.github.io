@@ -60,6 +60,12 @@ Restart the forward proxy and the nginx proxy system:
 $ sudo systemctl restart nginx
 {% endhighlight %}
 
+#### Step 5 (Optional): Renew certificate:
+{% highlight bash %}
+$ sudo systemctl stop nginx
+$ sudo letsencrypt renew
+$ sudo systemctl restart nginx
+{% endhighlight %}
 
 
 #### Reference:
