@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to install graphical Desktop in ec2 instance ubuntu16.04 (Linux) and access from mac
+title: How to install ubuntu16.04 gui on AWS and access from Mac
 ---
 
 ##### Create new user with password login
