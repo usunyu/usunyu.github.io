@@ -6,11 +6,22 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134146948-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-134146948-2');
+  </script>
+
+
   <title>
     {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }} 
+    {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
-      {{ page.title }} &middot; {{ site.title }}
+    {{ page.title }} &middot; {{ site.title }}
     {% endif %}
   </title>
 
@@ -24,7 +35,8 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://usunyu.com/public/apple-touch-icon-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="http://usunyu.com/public/apple-touch-icon-precomposed.png">
   <link rel="shortcut icon" href="http://usunyu.com/public/favicon.ico">
 
   <!-- RSS -->
