@@ -12,7 +12,7 @@ permalink:           pretty
 title:               usunyu
 tagline:             "Stay hungry. Stay foolish."
 description:         "Life was like a box of chocolates. You never know what you're gonna get."
-url:                 "http://usunyu.com/" # the base hostname & protocol for your site
+url:                 "https://usunyu.com/" # the base hostname & protocol for your site
 baseurl:             / # the subpath of your site, e.g. /blog/
 # paginate:            5
 
