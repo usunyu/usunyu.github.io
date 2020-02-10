@@ -12,7 +12,7 @@ macOS:
 
 Windows:
 ```
-C:\Users\accountName\AppData\Roaming\Unity\Asset Storesudo umount /vol
+C:\Users\accountName\AppData\Roaming\Unity\Asset Store
 ```
 
 These folders contain subfolders that correspond to particular Asset Store vendors. The actual Asset files are contained inside the subfolders using a structure defined by the Asset package publisher.
