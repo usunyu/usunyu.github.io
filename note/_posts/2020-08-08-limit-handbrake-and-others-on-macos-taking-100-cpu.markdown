@@ -30,5 +30,9 @@ Stop cputhrottle:
 sudo pkill cputhrottle
 ```
 
+Update:
+
+Use [CPUSetter](https://www.whatroute.net/cpusetter.html) instead, don't forget to donate the author :)
+
 #### Reference:
 * [Limit Dropbox and others on macOS from taking 100% CPU](https://medium.com/@sbr464/limit-dropbox-and-others-on-macos-from-taking-100-cpu-877266df104d)
