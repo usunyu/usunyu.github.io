@@ -10,7 +10,7 @@ screen -S <name>
 
 Resume screen session with name:
 ```
-screen -xS <name>
+screen -r <name>
 ```
 
 #### Reference:
