@@ -1,0 +1,38 @@
+---
+layout: post
+title: Conda Operation Tips
+---
+
+#### To create an environment:
+```
+conda create --name myenv
+```
+
+#### To create an environment with a specific version of Python:
+```
+conda create -n myenv python=3.6
+```
+
+#### To create an environment with a specific package:
+```
+conda create -n myenv scipy
+```
+OR:
+```
+conda create -n myenv python
+conda install -n myenv scipy
+```
+
+#### To create an environment with a specific version of Python and multiple packages:
+```
+conda create -n myenv python=3.6 scipy=0.15.0 astroid babel
+```
+
+#### Config to disable the automatic base activation:
+```
+conda config --set auto_activate_base false
+```
+
+#### Resource:
+* [Conda Managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+* [How do I prevent Conda from activating the base environment by default?](https://stackoverflow.com/questions/54429210/how-do-i-prevent-conda-from-activating-the-base-environment-by-default)
