@@ -23,6 +23,6 @@ permalink: /projects/
 * 2018 - [Crypto Alpaca](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd): Mascot of Bitcoin!
 [![](../public/images/crypto_alpaca.jpeg)](https://www.cryptoalpaca.pet/register?refer=AgSFvhskSVl7AuXz8XDJi2rFCIhAoTsd)
 * 2019 - [Reduce](https://reduceus.com/): An affordable self order solution for every small business owner.
-[![](../public/images/reduce.jpeg)](https://reduceus.com/)
+[![](../public/images/reduce.jpg)](https://reduceus.com/)
 
 * More coming soon...
