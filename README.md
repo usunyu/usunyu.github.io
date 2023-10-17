@@ -14,17 +14,17 @@
 ##### Install Jekyll
 
 ```
-$ gem install jekyll
+gem install jekyll
 ```
 
 ##### Install kramdown GFM parser:
 
 ```
-$ gem install kramdown-parser-gfm
+gem install kramdown-parser-gfm
 ```
 
 ##### Run App:
 
 ```
-$ jekyll serve
+jekyll serve
 ```
