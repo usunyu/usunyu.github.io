@@ -10,22 +10,17 @@ conda create --name myenv
 
 #### To create an environment with a specific version of Python:
 ```
-conda create -n myenv python=3.6
+conda create -n myenv python=3.10
 ```
 
 #### To create an environment with a specific package:
 ```
 conda create -n myenv scipy
 ```
-OR:
-```
-conda create -n myenv python
-conda install -n myenv scipy
-```
 
 #### To create an environment with a specific version of Python and multiple packages:
 ```
-conda create -n myenv python=3.6 scipy=0.15.0 astroid babel
+conda create -n myenv python=3.10 scipy astroid babel
 ```
 
 #### Config to disable the automatic base activation:
@@ -33,6 +28,23 @@ conda create -n myenv python=3.6 scipy=0.15.0 astroid babel
 conda config --set auto_activate_base false
 ```
 
+#### To use, or activate the new environment:
+```
+conda activate myenv
+```
+
+#### To deactivate an environment:
+```
+conda deactivate
+```
+
+#### To delete an environment, run the command below:
+```
+conda remove --name myenv --all
+```
+
 #### Resource:
-* [Conda Managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+* [Getting started with conda](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html)
+* [Managing conda environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 * [How do I prevent Conda from activating the base environment by default?](https://stackoverflow.com/questions/54429210/how-do-i-prevent-conda-from-activating-the-base-environment-by-default)
+* [Conda Remove Environment – How to Delete an Env](https://www.freecodecamp.org/news/how-to-delete-an-environment-in-conda/)
