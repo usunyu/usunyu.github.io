@@ -3,17 +3,17 @@ layout: post
 title: MongoDB Commands Cheat Sheet
 ---
 
-Check MongoDB version:
+**Check MongoDB version:**
 ```bash
 mongod --version
 ```
 
-Service status:
+**Service status:**
 ```bash
 systemctl status mongod
 ```
 
-Start / Stop / Restart:
+**Start / Stop / Restart:**
 ```bash
 sudo systemctl start mongod
 sudo systemctl stop mongod
