@@ -5,15 +5,16 @@ title: Limit MongoDB Memory Usage
 
 **1. Update config**
 ```bash
-sudo vi /etc/mongod.conf
+sudo vim /etc/mongod.conf
 ```
 
 Add / modify:
 ```bash
 storage:
+  dbPath: /var/lib/mongodb
   wiredTiger:
     engineConfig:
-      cacheSizeGB: 0.5
+      cacheSizeGB: 0.25
 ```
 
 **2. Restart MongoDB**
